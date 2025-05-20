@@ -1,30 +1,37 @@
-Calculadora Simples com Frontend e Backend
-Este projeto implementa uma calculadora simples com interface web (frontend) e backend em Python usando Flask.
+# Calculadora Simples com Frontend e Backend
+
+Este projeto implementa uma calculadora simples com interface web (frontend) e backend em Python usando Flask.  
 O frontend faz requisições para o backend para realizar as operações matemáticas.
 
-Funcionalidades
-Soma, subtração, multiplicação e divisão de dois números.
+---
 
-Validação dos números e operador.
+## Funcionalidades
 
-Interface web responsiva e simples.
+- Soma, subtração, multiplicação e divisão de dois números.
+- Validação dos números e operador.
+- Interface web responsiva e simples.
+- Backend separado que processa as operações.
 
-Backend separado que processa as operações.
+---
 
-Tecnologias utilizadas
-Python 3.x
+## Tecnologias utilizadas
 
-Flask (backend)
+- Python 3.x
+- Flask (backend)
+- HTML, CSS, JavaScript (frontend)
 
-HTML, CSS, JavaScript (frontend)
+---
 
-Como usar
-1. Clone o repositório
-bash
-Copiar código
+## Como usar
+
+### 1. Clone o repositório
+
+```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
+
 2. Instale as dependências
+
 bash
 Copiar código
 pip install flask
