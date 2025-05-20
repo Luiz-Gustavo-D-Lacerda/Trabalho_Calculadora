@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Permite chamadas do frontend local
+CORS(app)
 
 @app.route('/calcular', methods=['POST'])
 def calcular():
