@@ -1,50 +1,37 @@
-# fazendo uma calculadora com while
-# calculadora com entrada apenas para dois numeros
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
-while True:
-    numero_1 = input('digite um numero: ')
-    numero_2 = input('digite outro numero: ')
-    operador = input('Digite o operador (+, -, /, *): ')
+app = Flask(__name__)
+CORS(app)  # Permite chamadas do frontend local
 
-    numeros_validos = None
-    num_1_float = 0
-    num_2_float = 0
+@app.route('/calcular', methods=['POST'])
+def calcular():
+    data = request.json
 
     try:
-        num_1_float = float(numero_1)
-        num_2_float = float(numero_2)
-        numeros_validos = True
-    except: 
-        numeros_validos = None
+        num1 = float(data.get('numero1'))
+        num2 = float(data.get('numero2'))
+        operador = data.get('operador')
+    except (ValueError, TypeError):
+        return jsonify({'erro': 'Valores inválidos'}), 400
 
-    if numeros_validos is None:
-        print('Um ou ambos os numeros digitados nao e validos.')
-        continue
+    if operador not in ['+', '-', '*', '/']:
+        return jsonify({'erro': 'Operador inválido'}), 400
 
-    operadores_permitidos = '+-/*'
-    if operador not in operadores_permitidos:
-        print('Operador invalido')
-        continue
-    
-    if len(operador) > 1:
-        print('Digite apenas um operador.')
-        continue
-
-    print('Realizando sua conta. Confira o Resultado abaixo:')
-    
     if operador == '+':
-        print(f'{num_1_float}" + "{num_2_float}=', num_1_float + num_2_float)
+        resultado = num1 + num2
     elif operador == '-':
-        print(f'{num_1_float}" - "{num_2_float}=', num_1_float - num_2_float)
-    elif operador == '/':
-        print(f'{num_1_float}" / "{num_2_float}=', num_1_float / num_2_float)
+        resultado = num1 - num2
     elif operador == '*':
-        print(f'{num_1_float}" * "{num_2_float}=', num_1_float * num_2_float)
-        
-    else:
-        print('nunca deveria ter chegado a esse ponto.')
+        resultado = num1 * num2
+    elif operador == '/':
+        if num2 == 0:
+            return jsonify({'erro': 'Divisão por zero'}), 400
+        resultado = num1 / num2
 
-    sair = input('Quer Sair? [S]im: ').lower().startswith('s')
-    print (sair)
-    if sair is True: 
-        break
+    return jsonify({
+        'resultado': f'{num1} {operador} {num2} = {resultado}'
+    })
+
+if __name__ == '__main__':
+    app.run(debug=True)

@@ -49,7 +49,7 @@
   <div class="resultado" id="resultado"></div>
 
   <script>
-    function calcular() {
+    async function calcular() {
       const numero1 = document.getElementById('numero1').value;
       const numero2 = document.getElementById('numero2').value;
       const operador = document.getElementById('operador').value;
@@ -63,30 +63,27 @@
         return;
       }
 
-      let resultado;
-      switch (operador) {
-        case '+':
-          resultado = num1 + num2;
-          break;
-        case '-':
-          resultado = num1 - num2;
-          break;
-        case '*':
-          resultado = num1 * num2;
-          break;
-        case '/':
-          if (num2 === 0) {
-            resultadoDiv.innerText = 'Divisão por zero não permitida.';
-            return;
-          }
-          resultado = num1 / num2;
-          break;
-        default:
-          resultadoDiv.innerText = 'Operador inválido.';
-          return;
-      }
+      try {
+        const response = await fetch('http://localhost:5000/calcular', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ numero1, numero2, operador })
+        });
 
-      resultadoDiv.innerText = `Resultado: ${num1} ${operador} ${num2} = ${resultado}`;
+        const data = await response.json();
+
+        if (!response.ok) {
+          resultadoDiv.innerText = `Erro: ${data.erro}`;
+          return;
+        }
+
+        resultadoDiv.innerText = data.resultado;
+
+      } catch (error) {
+        resultadoDiv.innerText = 'Erro ao conectar com o servidor.';
+      }
     }
   </script>
 
