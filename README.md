@@ -5,7 +5,7 @@ O frontend faz requisições para o backend para realizar as operações matemá
 
 ---
 
-## Funcionalidades
+## 1. Funcionalidades
 
 - Soma, subtração, multiplicação e divisão de dois números.
 - Validação dos números e operador.
@@ -14,46 +14,45 @@ O frontend faz requisições para o backend para realizar as operações matemá
 
 ---
 
-## Tecnologias utilizadas
+## 2. Tecnologias utilizadas
 
-- Python 3.x
-- Flask (backend)
+- Python 3.x  
+- Flask (backend)  
 - HTML, CSS, JavaScript (frontend)
 
 ---
 
-## Como usar
+## 3. Como usar
 
-### 1. Clone o repositório
+### 3.1 Clone o repositório
 
 ```bash
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
-
-2. Instale as dependências
-
-bash
-Copiar código
+```
+### 3.2 Instale as dependências
+```
 pip install flask
-3. Rode o servidor Flask
-bash
-Copiar código
+```
+### 3.3 Rode o servidor Flask
+```
 python app.py
+```
 O backend estará disponível em: http://localhost:5000
 
-4. Acesse a calculadora no navegador
-Abra o arquivo index.html na pasta frontend diretamente ou acesse via servidor (se configurado para servir o front).
-
-Estrutura do projeto
-bash
-Copiar código
+### 3.4 Acesse a calculadora no navegador
+Abra o arquivo index.html na pasta frontend diretamente ou configure um servidor para servir os arquivos estáticos.
+## 4. Estrutura do projeto
+```
 /backend
   app.py          # Código Python do backend Flask
 /frontend
   index.html      # Interface da calculadora
   style.css       # Estilos CSS (se existir)
   script.js       # Script JavaScript para chamadas ao backend
-Como funciona
+
+```
+## 5. Como funciona
 O usuário insere dois números e escolhe a operação no frontend.
 
 O frontend envia uma requisição para o backend via API REST.
