@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Simples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f7f7f7;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    .resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Calculadora</h2>
+
+  <label for="numero1">Número 1:</label>
+  <input type="text" id="numero1" />
+
+  <label for="numero2">Número 2:</label>
+  <input type="text" id="numero2" />
+
+  <label for="operador">Operador:</label>
+  <select id="operador">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    function calcular() {
+      const numero1 = document.getElementById('numero1').value;
+      const numero2 = document.getElementById('numero2').value;
+      const operador = document.getElementById('operador').value;
+      const resultadoDiv = document.getElementById('resultado');
+
+      const num1 = parseFloat(numero1);
+      const num2 = parseFloat(numero2);
+
+      if (isNaN(num1) || isNaN(num2)) {
+        resultadoDiv.innerText = 'Um ou ambos os números são inválidos.';
+        return;
+      }
+
+      let resultado;
+      switch (operador) {
+        case '+':
+          resultado = num1 + num2;
+          break;
+        case '-':
+          resultado = num1 - num2;
+          break;
+        case '*':
+          resultado = num1 * num2;
+          break;
+        case '/':
+          if (num2 === 0) {
+            resultadoDiv.innerText = 'Divisão por zero não permitida.';
+            return;
+          }
+          resultado = num1 / num2;
+          break;
+        default:
+          resultadoDiv.innerText = 'Operador inválido.';
+          return;
+      }
+
+      resultadoDiv.innerText = `Resultado: ${num1} ${operador} ${num2} = ${resultado}`;
+    }
+  </script>
+
+</body>
+</html>
