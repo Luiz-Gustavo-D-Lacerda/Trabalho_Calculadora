@@ -1,0 +1,13 @@
+# Ignorar node_modules (pacotes npm)
+node_modules/
+
+# Ignorar arquivos de build do Java (exemplo: target/)
+target/
+
+# Ignorar arquivos de sistema do Windows (exemplo: Thumbs.db)
+Thumbs.db
+.DS_Store
+
+# Ignorar arquivos temporários do editor
+*.log
+*.tmp
